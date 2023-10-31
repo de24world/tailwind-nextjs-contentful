@@ -1,12 +1,12 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
+  title: 'New Gene Technologie',
+  author: 'NewGeneTech',
   headerTitle: 'TailwindBlog',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'http://newgenetech.com',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
@@ -19,9 +19,9 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com',
   locale: 'en-US',
   analytics: {
-    // If you want to use an analytics provider you have to add it to the
-    // content security policy in the `next.config.js` file.
-    // supports Plausible, Simple Analytics, Umami, Posthog or Google Analytics.
+    // 분석 제공자(툴)를 사용하려면
+    // `next.config.js` 파일의 콘텐츠 보안 정책에 추가해야합니다
+    // Plausible, Simple Analytics, Umami, Posthog 또는 Google Analytics를 지원합니다.
     umamiAnalytics: {
       // We use an env variable for this site to avoid other users cloning our analytics ID
       umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
