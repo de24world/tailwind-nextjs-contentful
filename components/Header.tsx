@@ -5,19 +5,23 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import LanguageSwitcher from './LanguageSwitcher'
+import { getDictionary } from '@/lib/dictionary'
+import { Locale } from '@/i18n.config'
 
-const Header = () => {
+const Header = async ({ lang }: { lang: Locale }) => {
+  const { common, navigation } = await getDictionary(lang)
+
   return (
     <header className="flex items-center justify-between py-10">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
-            <div className="mr-3">
-              <Logo />
-            </div>
+            <Logo />
             {typeof siteMetadata.headerTitle === 'string' ? (
               <div className="hidden h-6 text-2xl font-semibold sm:block">
-                {siteMetadata.headerTitle}
+                {common[siteMetadata.headerTitle]}
+                {/* {siteMetadata.headerTitle} */}
               </div>
             ) : (
               siteMetadata.headerTitle
@@ -34,9 +38,11 @@ const Header = () => {
               href={link.href}
               className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
             >
-              {link.title}
+              {/* {link.title} */}
+              {navigation[link.title]}
             </Link>
           ))}
+        <LanguageSwitcher />
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />

@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'New Gene Technologie',
   author: 'NewGeneTech',
-  headerTitle: 'TailwindBlog',
+  headerTitle: 'NewGeneTech',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light

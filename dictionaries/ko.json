@@ -1,0 +1,27 @@
+{
+  "common": {
+    "NewGeneTech": "뉴제너테크"
+  },
+  "navigation": {
+    "home": "홈",
+    "Home": "홈",
+    "about": "소개",
+    "About": "소개",
+    "blog": "블로그",
+    "Blog": "블로그",
+    "projects": "프로젝트",
+    "Projects": "프로젝트",
+    "tags": "태그",
+    "Tags": "태그"
+  },
+  "page": {
+    "home": {
+      "title": "타이틀",
+      "description": "설명"
+    },
+    "about": {
+      "title": "소개",
+      "description": "설명"
+    }
+  }
+}

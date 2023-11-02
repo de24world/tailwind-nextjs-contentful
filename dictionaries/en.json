@@ -1,0 +1,27 @@
+{
+  "common": {
+    "NewGeneTech": "NewGeneTech"
+  },
+  "navigation": {
+    "home": "hom",
+    "Home": "Home",
+    "about": "about",
+    "About": "About",
+    "blog": "blog",
+    "Blog": "Blog",
+    "projects": "projects",
+    "Projects": "Projects",
+    "tags": "tags",
+    "Tags": "Tags"
+  },
+  "page": {
+    "home": {
+      "title": "Welcome to NextJs i18n",
+      "description": "Internationalization in NextJs 13 App router"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    }
+  }
+}
