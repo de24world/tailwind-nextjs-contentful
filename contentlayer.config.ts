@@ -29,11 +29,20 @@ const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, '').split('/')[1],
+  },
+  lang: {
+    type: 'string',
+    resolve: (doc) => doc._raw.flattenedPath.split('/')[1],
   },
   path: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath,
+    resolve: (doc) =>
+      doc._raw.flattenedPath.split('/')[1] +
+      '/' +
+      doc._raw.sourceFilePath.split('/')[0] +
+      '/' +
+      doc._raw.flattenedPath.replace(/^.+?(\/)/, '').split('/')[1],
   },
   filePath: {
     type: 'string',
