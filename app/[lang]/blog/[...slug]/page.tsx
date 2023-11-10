@@ -12,6 +12,7 @@ import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+import { Locale, i18n } from '@/i18n.config'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -74,16 +75,23 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = async () => {
-  const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
+  const paths = allBlogs.flatMap((item) => {
+    return i18n.locales.map((language) => {
+      return {
+        params: { slug: item.slug },
+        lang: language,
+      }
+    })
+  })
 
   return paths
 }
 
-export default async function Page({ params }: { params: { slug: string[] } }) {
-  const slug = decodeURI(params.slug.join('/'))
-  // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
-  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
+export default async function Page({ params }: { params: { slug: string; lang: Locale } }) {
+  const filterLangPosts = allCoreContent(sortPosts(allBlogs)).filter((val) =>
+    val.lang.includes(params.lang)
+  )
+  const postIndex = filterLangPosts.findIndex((p) => p.slug === params.slug[0])
   if (postIndex === -1) {
     return (
       <div className="mt-24 text-center">
@@ -97,9 +105,10 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     )
   }
 
-  const prev = sortedCoreContents[postIndex + 1]
-  const next = sortedCoreContents[postIndex - 1]
-  const post = allBlogs.find((p) => p.slug === slug) as Blog
+  const prev = filterLangPosts[postIndex + 1]
+  const next = filterLangPosts[postIndex - 1]
+  const filterPosts = allBlogs.filter((val) => val.lang.includes(params.lang))
+  const post = filterPosts.find((p) => p.slug === params.slug[0]) as Blog
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
